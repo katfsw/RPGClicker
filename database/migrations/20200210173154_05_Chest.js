@@ -18,6 +18,10 @@ exports.up = function(knex) {
         .inTable('items')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
+
+        chest
+        .integer('chest_id')
+        .notNullable()
     })
 };
 
