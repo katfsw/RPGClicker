@@ -35,6 +35,33 @@ exports.up = function(knex) {
 
         items
         .integer('Range')
+
+        items
+        .integer('Stab_Defense')
+
+        items
+        .integer('Slash_Defense')
+
+        items
+        .integer('Crush_Defense')
+
+        items
+        .integer('Magic_Defense')
+
+        items
+        .integer('Range_Defense')
+
+        items
+        .integer('Strength')
+
+        items
+        .integer('Ranged_Strength')
+
+        items
+        .integer('Magic_Damage')
+
+        items
+        .integer('Speed')
     })
 };
 
