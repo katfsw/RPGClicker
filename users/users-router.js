@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Users = require('./users-model.js');
 
+//GET a list of Users
 router.get('/', (req, res) => {
  Users.find()
  .then(users => {
@@ -9,6 +10,7 @@ router.get('/', (req, res) => {
  .catch(err => res.send(err));
 });
 
+//GET a specific User ID
 router.get('/:id', (req, res) => {
     Users
     .getUser(req.params.id)
@@ -18,7 +20,7 @@ router.get('/:id', (req, res) => {
       });
 })
 
-
+//POST a User
 router.post('/', (req, res) => {
     const userData = req.body;
     Users
@@ -31,6 +33,7 @@ router.post('/', (req, res) => {
     });
   });
 
+  //PUT a User ID
   router.put('/:id', (req,res) =>{
     const userData = req.body;
     Users
@@ -43,6 +46,7 @@ router.post('/', (req, res) => {
     })
   })
 
+  //DELETE a User ID
 router.delete('/:id', (req, res) => {
     Users.remove(req.params.id)
     .then(count => {
