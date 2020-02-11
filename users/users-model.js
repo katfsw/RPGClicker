@@ -10,11 +10,12 @@ module.exports = {
 };
 
 function find() {
-    return db('accounts').select('id', 'username');
+    return db('accounts').select('id', 'username', 'password');
 }
 
 function findBy(filter) {
-    return db('accounts').where(filter);
+    return db('accounts').where(filter)
+    .first();
 }
 
 function findById(id) {
