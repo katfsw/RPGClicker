@@ -14,6 +14,7 @@ router.post('/register', (req, res) => {
 
         const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
         user.password = hash;
+        req.user = user;
       
         Users.add(user)
           .then(saved => {
@@ -34,16 +35,13 @@ router.post('/login', (req, res) => {
     let { username, password } = req.body;
     
     Users.findBy({ username })
-    .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
         //2. produce a token
-        const token = getJwtToken(user.username);
-
+        const token = getJwtToken(user);
         //3. send the token to the clinet
         res.status(200).json({
-          token, //token
-          message: `Welcome ${user.username}! have a token ...`
+          message: `Welcome, ${user.username}!`
         });
       } else {
         res.status(401).json({ message: 'Invalid Credentials' });
@@ -54,15 +52,15 @@ router.post('/login', (req, res) => {
     });
 });
 
-function getJwtToken(username){
+function getJwtToken(user){
     const payload = { 
-      username,
-      department: 'dev' 
+      subject: user.id,
+      username: user.username
     }
   
     const secret = process.env.JWT_SECRET || 'cat0range' //env
   
-    return jwt.sign(payload, secret, options)
+    return jwt.sign(payload, secret)
   }
 
   module.exports = router;
