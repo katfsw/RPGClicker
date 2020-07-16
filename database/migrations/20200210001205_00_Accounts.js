@@ -17,10 +17,13 @@ exports.up = function(knex) {
       .string('email',128)
 
       accounts
-      .timestamp('created_at').defaultTo(knex.fn.now())
+      .string('name',128)
 
       accounts
-      .boolean('is_admin').defaultTo(false)
+      .string('quote',128)
+
+      accounts
+      .timestamp('created_at').defaultTo(knex.fn.now())
 
   })
 };

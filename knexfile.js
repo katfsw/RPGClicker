@@ -5,7 +5,7 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './database/RPGClickerDB.sqlite3'
+      filename: './database/BulletJournal.sqlite3'
     },
     useNullAsDefault: true,
 
